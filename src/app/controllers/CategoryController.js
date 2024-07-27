@@ -6,6 +6,7 @@ class CategoryController {
 
     response.json(categories);
   }
+
   async show(request, response) {
     const { id } = request.params;
     const category = await CategoryRepository.findById(id);
