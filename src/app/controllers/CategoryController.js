@@ -12,7 +12,7 @@ class CategoryController {
     const category = await CategoryRepository.findById(id);
     if (!category) {
       //404 Not Found
-      return response.status(404).json({ error: "User not found" });
+      return response.status(404).json({ error: "Category not found" });
     }
     response.json(category);
   }
@@ -23,7 +23,7 @@ class CategoryController {
     }
     const category = await CategoryRepository.create({ name });
 
-    response.json(category);
+    response.status(201).json(category);
   }
   async update(request, response) {
     const { id } = request.params;
@@ -31,7 +31,7 @@ class CategoryController {
     const contactExists = await CategoryRepository.findById(id);
 
     if (!contactExists) {
-      return response.status(404).json({ error: "User not found" });
+      return response.status(404).json({ error: "Category not found" });
     }
     if (!name) {
       return response.status(400).json({ error: "Name is required" });
